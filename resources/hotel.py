@@ -39,8 +39,7 @@ class Hotel(Resource):
             hotel_encontrado.update_hotel(**dados)
             hotel_encontrado.save_hotel()
             return hotel_encontrado.json(), 200
-        hotel.save_hotel()
-        return hotel.json(), 201
+        return {"message": "Hotel id '{}' already exists.".format(id)}, 400 #Bad Request
 
     def delete(self, id):
         hotel = HotelModel.find_hotel(id)
